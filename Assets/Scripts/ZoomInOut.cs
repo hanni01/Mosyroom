@@ -10,6 +10,7 @@ public class ZoomInOut : MonoBehaviour
     private float _minZoom = 1f;             //¡‹¿Œ √÷º“
     private float _maxZoom = 10f;            //¡‹æ∆øÙ √÷¥Î
     private float _zoomSpeed = 0.1f;         //¡‹«œ¥¬ º”µµ
+    public float dragSpeed = 2;
 
     void Start()
     {
@@ -18,6 +19,14 @@ public class ZoomInOut : MonoBehaviour
 
     void Update()
     {
+        if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Moved)
+        {
+            // µÂ∑°±◊ ¿Ã∫•∆Æ √≥∏Æ
+            Vector3 delta = Input.GetTouch(0).deltaPosition;
+            transform.Translate(-delta.x * dragSpeed * Time.deltaTime, -delta.y * dragSpeed * Time.deltaTime, 0);
+        }
+
+        //¡‹¿Œ ¡‹æ∆øÙ
         if (Input.touchCount == 2)
         {
             Touch touch1 = Input.GetTouch(0);

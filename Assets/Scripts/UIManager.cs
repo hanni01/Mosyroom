@@ -13,17 +13,15 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        mode.onValueChanged.AddListener(value => RoomSettingPanel.SetActive(value));
+        mode.onValueChanged.AddListener(value => ReturnPanel.SetActive(value));
+        mode.onValueChanged.AddListener(value => grids.enabled = value);
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (!mode.isOn)
             return;
-        mode.onValueChanged.AddListener(value => RoomSettingPanel.SetActive(value));
-        mode.onValueChanged.AddListener(value => ReturnPanel.SetActive(value));
-        mode.onValueChanged.AddListener(value => grids.enabled = value); //enabled 속성은 오브젝트의 활성화/비활성화 여부를 결정한다.
-                                                                         //value는 onValueChanged 이벤트에서 전달되는 새로운 Toggle 값입니다.
     }
 }
