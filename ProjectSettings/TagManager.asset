@@ -50,3 +50,6 @@ TagManager:
   - name: object
     uniqueID: 641003625
     locked: 0
+  - name: button
+    uniqueID: 4146405797
+    locked: 0
