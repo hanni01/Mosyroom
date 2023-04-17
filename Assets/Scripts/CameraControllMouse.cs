@@ -23,8 +23,9 @@ public class CameraControllMouse : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                if (EventSystem.current.IsPointerOverGameObject() == false)
+                if (hit.collider.gameObject.CompareTag("BackGround"))
                 {
+                    Debug.Log("BackGround 터치");
                     dragOrigin = Input.mousePosition;
                     prevPos = transform.position;
                     isDragging = true;
@@ -40,6 +41,8 @@ public class CameraControllMouse : MonoBehaviour
 
         if (isDragging) //드래그 중이라면
         {
+            Debug.Log(hit.collider.gameObject.name);
+            Debug.Log("아무말");
             Vector3 pos = Camera.main.ScreenToViewportPoint(dragOrigin - Input.mousePosition);
             Vector3 move = new Vector3(pos.x * dragSpeed, pos.y * dragSpeed, 0);
             Vector3 delta = Input.mousePosition - dragOrigin;

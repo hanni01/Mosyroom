@@ -8,45 +8,25 @@ using UnityEngine.UI;
 
 public class objectSet : MonoBehaviour
 {
-    private bool isDragging;
-    private Vector3 dragOrigin;
-    private Vector3 prevPos;
-    private float dragSpeed = 5f;
-    private RaycastHit hit;
+    readonly float distance = 10;
+    public bool isDragObj = false;
+    private GameObject SelectedGameObj;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        SelectedGameObj= GetComponent<GameObject>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnMouseDrag()
     {
-        if(Input.GetMouseButtonDown(0))
-        {
-            Debug.Log("Click object");
-            isDragging = true;
-            dragOrigin = Input.mousePosition;
-            prevPos = transform.position;
-        }
-        if(Input.GetMouseButtonUp(0))
-        {
-            isDragging  = false;
-        }
-
-        if(isDragging)
-        {
-            OnDrag();
-        }
+        isDragObj = true;
+        Vector3 mousePosition = new Vector3(Input.mousePosition.x,Input.mousePosition.y, distance);
+        Vector3 objPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        transform.position = objPosition;
     }
 
-    private void OnDrag()
+    private void OnMouseUp()
     {
-        Vector3 pos = Camera.main.ScreenToViewportPoint(dragOrigin - Input.mousePosition);
-        Vector3 move = new Vector3(pos.x * dragSpeed, pos.y * dragSpeed, 0);
-
-        Vector3 newPos = prevPos + move;
-        transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime * 10);
+        isDragObj= false;
     }
 }

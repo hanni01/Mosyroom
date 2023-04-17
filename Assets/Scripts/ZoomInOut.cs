@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class ZoomInOut : MonoBehaviour
@@ -11,6 +12,7 @@ public class ZoomInOut : MonoBehaviour
     private float _maxZoom = 10f;            //¡‹æ∆øÙ √÷¥Î
     private float _zoomSpeed = 0.1f;         //¡‹«œ¥¬ º”µµ
     public float dragSpeed = 2;
+    private RaycastHit hit;
 
     void Start()
     {
@@ -21,9 +23,11 @@ public class ZoomInOut : MonoBehaviour
     {
         if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Moved)
         {
-            // µÂ∑°±◊ ¿Ã∫•∆Æ √≥∏Æ
-            Vector3 delta = Input.GetTouch(0).deltaPosition;
-            transform.Translate(-delta.x * dragSpeed * Time.deltaTime, -delta.y * dragSpeed * Time.deltaTime, 0);
+            if (!GameObject.Find("object").GetComponent<objectSet>().isDragObj)
+            {
+                Vector3 delta = Input.GetTouch(0).deltaPosition;
+                transform.Translate(-delta.x * dragSpeed * Time.deltaTime, -delta.y * dragSpeed * Time.deltaTime, 0);
+            }
         }
 
         //¡‹¿Œ ¡‹æ∆øÙ
