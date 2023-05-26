@@ -21,15 +21,6 @@ public class ZoomInOut : MonoBehaviour
 
     void Update()
     {
-        if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Moved)
-        {
-            if (!GameObject.Find("object").GetComponent<objectSet>().isDragObj)
-            {
-                Vector3 delta = Input.GetTouch(0).deltaPosition;
-                transform.Translate(-delta.x * dragSpeed * Time.deltaTime, -delta.y * dragSpeed * Time.deltaTime, 0);
-            }
-        }
-
         //¡‹¿Œ ¡‹æ∆øÙ
         if (Input.touchCount == 2)
         {

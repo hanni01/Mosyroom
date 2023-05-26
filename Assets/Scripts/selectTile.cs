@@ -28,12 +28,15 @@ public class selectTile : MonoBehaviour
         VerticalDiagonal = height / 10;
         parentPosition = parent.transform.position;
 
+        Debug.Log("부모 오브젝트 포지션:"+ center);
+        Debug.Log("width: " + width + ", height: " + height);
+        Debug.Log("H 대각선: "+HorizontalDiagonal+", V 대각선:"+ VerticalDiagonal);
+
         for(int j = 0;j < 10; j++)
         {
             for (int i = 0; i < 10; i++)
             {
-                TileManager tiles = new TileManager((PointX + (HorizontalDiagonal / 2) * j + (HorizontalDiagonal / 2) * (i + 1)),
-                    (center.y - (VerticalDiagonal / 2) * j + (VerticalDiagonal / 2) * i));
+                TileManager tiles = new TileManager((PointX + (HorizontalDiagonal / 2) * j + (HorizontalDiagonal / 2) * (i + 1)) / 2, (center.y - (VerticalDiagonal / 2) * j + (VerticalDiagonal / 2) * i) / 1.85);
                 tile.Add(tiles);
             }
         }
@@ -48,7 +51,7 @@ public class selectTile : MonoBehaviour
         for(int i = 0;i < tile.Count; i++)
         {
             GameObject instance = Instantiate(gridTile, parent);
-            instance.transform.position = (parentPosition / 2) + new Vector3((float)tile[i].tileX, (float)tile[i].tileY, 0);
+            instance.transform.position = (parent.transform.position / 2) + new Vector3((float)tile[i].tileX , (float)tile[i].tileY, 0);
             instance.SetActive(true);
         }
     }
