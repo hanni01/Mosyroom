@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static UnityEditor.PlayerSettings;
 
 public class UIManager : MonoBehaviour
 {
@@ -69,11 +70,12 @@ public class UIManager : MonoBehaviour
 
         if (dragging)
             OnDrag();
+
+        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
     }
 
     private void OnBeginDrag(Action<bool> isHold)
     {
-        Debug.Log(SelectedFurniture);
 
         if (SelectedFurniture == null)
         {
@@ -98,7 +100,7 @@ public class UIManager : MonoBehaviour
         if (SelectedFurniture == null)
             return;
 
-        var tile = OnSelect(obj => obj.GetComponent<Tile>() != null);
+        var tile = OnSelectTile(obj => obj.GetComponent<Tile>() != null);
         if (tile != null)
         {
             InteractableBtn.gameObject.SetActive(false);
@@ -113,8 +115,7 @@ public class UIManager : MonoBehaviour
         if (SelectedFurniture == null)
             return;
 
-        var centerPoint = Camera.main.WorldToScreenPoint(SelectedFurniture.transform.position);
-        InteractableBtn.position = centerPoint;
+        InteractableBtn.position = new Vector3(SelectedFurniture.transform.position.x, SelectedFurniture.transform.position.y - 6, 0);
         InteractableBtn.gameObject.SetActive(true);
 
         List<Tile> area;
@@ -124,15 +125,28 @@ public class UIManager : MonoBehaviour
 
     private GameObject OnSelect(Predicate<GameObject> condition)
     {
-        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        var hits = Physics.RaycastAll(ray, Mathf.Infinity);
+        var ray = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Ray2D newRay = new Ray2D(ray, Vector2.zero);
+        var hits = Physics2D.RaycastAll(newRay.origin, newRay.direction);
         foreach (var hit in hits)
         {
-            Debug.Log(hit.transform.gameObject);
             if (condition(hit.transform.gameObject))
                 return hit.transform.gameObject;
         }
 
+        return null;
+    }
+
+    private GameObject OnSelectTile(Predicate<GameObject> condition)
+    {
+        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        var hits = Physics.RaycastAll(ray, Mathf.Infinity);
+        
+        foreach(var hit in hits)
+        {
+            if (condition(hit.transform.gameObject))
+                return hit.transform.gameObject;
+        }
         return null;
     }
 
@@ -163,6 +177,7 @@ public class UIManager : MonoBehaviour
         InteractableBtn.gameObject.SetActive(false);
         RoomSettingPanel.SetActive(false);
         ReturnPanel.SetActive(false);
+        mode.interactable = true;
         mode.isOn = false;
 
         targetObj = null;
@@ -180,8 +195,6 @@ public class UIManager : MonoBehaviour
     public void onClickObj()
     {
         GameObject currentClick = EventSystem.current.currentSelectedGameObject;
-
-        Debug.Log(currentClick);
 
         for(int i = 0;i < RealObjList.Length;i++)
         {
@@ -221,6 +234,7 @@ public class UIManager : MonoBehaviour
                 var tile = tiles.GetTileByCoordinate(furniture.origin.x + j, furniture.origin.y + i);
                 if (tile == null || tile.isBlock)
                 {
+                    Debug.Log(tile);
                     furniture.SetColor(Color.red);
                     return true;
                 }
@@ -235,6 +249,10 @@ public class UIManager : MonoBehaviour
 
     private void OnUndo(FurnitureObj furniture)
     {
+        if (furniture.previous == null)
+            return;
+
+        furniture.Move(furniture.previous.tile);
         furniture.gameObject.SetActive(false);
     }
 }

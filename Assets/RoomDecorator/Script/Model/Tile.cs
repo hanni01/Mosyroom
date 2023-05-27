@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Drawing;
+using UnityEngine;
+using Color = UnityEngine.Color;
+
 namespace Model
 {
     public class Tile : MonoBehaviour

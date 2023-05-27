@@ -253,8 +253,8 @@ TextureImporter:
         y: 54
         width: 30
         height: 132
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.47958374, y: 0.045271583}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -295,8 +295,8 @@ TextureImporter:
         y: 59
         width: 143
         height: 101
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.28450155, y: 0.15420668}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -337,8 +337,8 @@ TextureImporter:
         y: 64
         width: 104
         height: 86
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.29258287, y: 0.12972677}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -358,8 +358,8 @@ TextureImporter:
         y: 69
         width: 43
         height: 75
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.09167257}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -382,7 +382,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      NewIcogram 2023-04-14 17_43 (4)_10: 745157195
+      NewIcogram 2023-04-14 17_43 (4)_4: -190427056
       NewIcogram 2023-04-14 17_43 (4)_3: 1138419796
       NewIcogram 2023-04-14 17_43 (4)_0: -6169666
       NewIcogram 2023-04-14 17_43 (4)_6: -239869715
@@ -392,7 +392,7 @@ TextureImporter:
       NewIcogram 2023-04-14 17_43 (4)_5: 1879671588
       NewIcogram 2023-04-14 17_43 (4)_9: 1567252137
       NewIcogram 2023-04-14 17_43 (4)_8: 1668467049
-      NewIcogram 2023-04-14 17_43 (4)_4: -190427056
+      NewIcogram 2023-04-14 17_43 (4)_10: 745157195
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
