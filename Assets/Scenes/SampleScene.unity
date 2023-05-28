@@ -784,6 +784,12 @@ MonoBehaviour:
   cancelBtn: {fileID: 278766765}
   DiaryCanvas: {fileID: 1215821782}
   mode: {fileID: 1828900132}
+  title: {fileID: 1533728219}
+  writer: {fileID: 2126084150}
+  date: {fileID: 721038615}
+  contents: {fileID: 1347291191}
+  bookPage: {fileID: 1786957022}
+  bookShelves: {fileID: 1215821782}
 --- !u!1 &311175011
 GameObject:
   m_ObjectHideFlags: 0
@@ -2066,8 +2072,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3572,13 +3578,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1318670824}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 866455664d9ca104399414207fe036c7, type: 3}
+  m_Script: {fileID: 11500000, guid: f282789cc1bd5964ab0583f1cf786dee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: {fileID: 1533728219}
-  writer: {fileID: 2126084150}
-  date: {fileID: 721038615}
-  contents: {fileID: 1347291191}
+  backBtn: {fileID: 2047414119}
+  writeBtn: {fileID: 1619053481}
+  trashBtn: {fileID: 1645155211}
+  page: {fileID: 1786957022}
+  bookSelves: {fileID: 1215821782}
 --- !u!1 &1342673918
 GameObject:
   m_ObjectHideFlags: 0
@@ -3772,8 +3779,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 37
+  m_fontSizeBase: 37
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4541,8 +4548,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5967,6 +5974,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9a6917e703e64d458bc81e8b701c55f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabInstanceList: []
   panel1: {fileID: 965820027}
   panel2: {fileID: 1870626304}
 --- !u!1 &1870626304
@@ -7013,8 +7021,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

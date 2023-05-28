@@ -1,9 +1,11 @@
+using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.VersionControl;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 using static DiaryDataSetting;
 
 public class DiraryData : MonoBehaviour
@@ -12,11 +14,16 @@ public class DiraryData : MonoBehaviour
     public TextMeshProUGUI writer;
     public TextMeshProUGUI date;
     public TextMeshProUGUI contents;
+    public GameObject bookPage;
+    public GameObject bookShelves;
 
-    // Start is called before the first frame update
-    void Start()
+    private ResDiaryData res;
+    private List<GameObject> btnList= new List<GameObject>();
+
+    private void Awake()
     {
         StartCoroutine(GetDiaryData());
+        btnList = GameObject.Find("DiaryCanvas").GetComponent<DiaryDataSetting>().prefabInstanceList;
     }
 
     IEnumerator GetDiaryData()
@@ -36,9 +43,10 @@ public class DiraryData : MonoBehaviour
                 string data = www.downloadHandler.text;
                 Debug.Log(data);
 
-                ResDiaryData res = JsonFx.Json.JsonReader.Deserialize<ResDiaryData>(data);
+                
+                res = JsonConvert.DeserializeObject<ResDiaryData>(data);
 
-                foreach(DiaryData diaryData in res.diaryData)
+                foreach (DiaryData diaryData in res.diaryData)
                 {
                     Debug.Log(diaryData.title);
                     Debug.Log(diaryData.writer);

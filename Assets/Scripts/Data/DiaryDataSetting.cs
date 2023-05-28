@@ -14,8 +14,8 @@ public class DiaryDataSetting : MonoBehaviour
     private int diaryCnt = 0;
     private ResDiaryData res;
     private GameObject[] diaryBook;
-    private GameObject[] diaryBookGameObj;
     private int RandomNum;
+    public List<GameObject> prefabInstanceList = new List<GameObject>();
 
     public GameObject panel1;
     public GameObject panel2;
@@ -51,13 +51,16 @@ public class DiaryDataSetting : MonoBehaviour
                     GameObject prefabInstance = Instantiate(diaryBook[RandomNum]);
                     prefabInstance.transform.SetParent(panel1.transform);
                     prefabInstance.transform.localScale = new Vector3(10, 8, 0);
+                    prefabInstanceList.Add(prefabInstance);
                 }
                 else
                 {
                     GameObject prefabInstance = Instantiate(diaryBook[RandomNum]);
                     prefabInstance.transform.SetParent(panel2.transform);
                     prefabInstance.transform.localScale = new Vector3(10, 8, 0);
+                    prefabInstanceList.Add(prefabInstance);
                 }
+
             }
         }
     }
