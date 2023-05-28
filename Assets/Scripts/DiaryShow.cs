@@ -15,6 +15,7 @@ public class DiaryShow : MonoBehaviour
     {
         bookBtn.onClick.AddListener(() => {
             DiaryCanvas.SetActive(true);
+            GameObject.Find("DiaryCanvas").GetComponent<DiaryDataSetting>().GenerateBook();
             mode.interactable = false;
         });
 
