@@ -10,6 +10,7 @@ public class bookPage : MonoBehaviour
     public Button trashBtn;
 
     public GameObject page;
+    public GameObject CreateBookPage;
     public GameObject bookSelves;
 
     // Start is called before the first frame update
@@ -19,6 +20,12 @@ public class bookPage : MonoBehaviour
         {
             page.SetActive(false);
             bookSelves.SetActive(true);
+        });
+
+        writeBtn.onClick.AddListener(() =>
+        {
+            bookSelves.SetActive(false);
+            CreateBookPage.SetActive(true);
         });
     }
 

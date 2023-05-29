@@ -46,7 +46,7 @@ public class DiaryDataSetting : MonoBehaviour
             for(int i = 0;i < diaryCnt; i++)
             {
                 RandomNum = Random.Range(0, diaryCnt-1);
-                if(i < 12)
+                if(panel1.transform.childCount != 12)
                 {
                     GameObject prefabInstance = Instantiate(diaryBook[RandomNum]);
                     prefabInstance.transform.SetParent(panel1.transform);
@@ -88,5 +88,7 @@ public class DiaryDataSetting : MonoBehaviour
                 diaryCnt = res.diaryData.Count;
             }
         }
+
+        GenerateBook();
     }
 }
