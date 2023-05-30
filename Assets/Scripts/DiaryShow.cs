@@ -17,6 +17,7 @@ public class DiaryShow : MonoBehaviour
     public GameObject DiaryCanvas;
     public Toggle mode;
 
+    public TextMeshProUGUI boardID;
     public TextMeshProUGUI title;
     public TextMeshProUGUI writer;
     public TextMeshProUGUI date;
@@ -27,6 +28,8 @@ public class DiaryShow : MonoBehaviour
     private ResDiaryData res;
 
     private List<GameObject> btnList = new List<GameObject>();
+
+    public GameObject currentClickedBook;
 
     private void Awake()
     {
@@ -46,10 +49,14 @@ public class DiaryShow : MonoBehaviour
                 int index = i;
                 btnList[i].GetComponent<Button>().onClick.AddListener(() =>
                 {
+                    currentClickedBook = EventSystem.current.currentSelectedGameObject;
+                    GameObject.Find("BookContentsCanvas").GetComponent<bookPage>().checkWhatBtnClicked = 1;
+
                     bookShelves.SetActive(false);
                     bookPage.SetActive(true);
 
                     DiaryData diary = res.diaryData[index];
+                    boardID.text = diary.boardID;
                     title.text = diary.title;
                     writer.text = diary.writer;
                     date.text = diary.date;
@@ -72,7 +79,7 @@ public class DiaryShow : MonoBehaviour
     {
         WWWForm form = new WWWForm();
 
-        using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/mosyroomDB/display.php", form))
+        using (UnityWebRequest www = UnityWebRequest.Post("http://172.30.1.50/mosyroomDB/display.php", form))
         {
             yield return www.SendWebRequest();
 

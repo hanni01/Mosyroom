@@ -26,6 +26,7 @@ public class DiaryDataSetting : MonoBehaviour
     }
     public class DiaryData
     {
+        public string boardID;
         public string title;
         public string writer;
         public string date;
@@ -45,7 +46,7 @@ public class DiaryDataSetting : MonoBehaviour
         {
             for(int i = 0;i < diaryCnt; i++)
             {
-                RandomNum = Random.Range(0, diaryCnt-1);
+                RandomNum = Random.Range(0, 4);
                 if(panel1.transform.childCount != 12)
                 {
                     GameObject prefabInstance = Instantiate(diaryBook[RandomNum]);
@@ -69,7 +70,7 @@ public class DiaryDataSetting : MonoBehaviour
     {
         WWWForm form = new WWWForm();
 
-        using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/mosyroomDB/display.php", form))
+        using (UnityWebRequest www = UnityWebRequest.Post("http://172.30.1.50/mosyroomDB/display.php", form))
         {
             yield return www.SendWebRequest();
 
